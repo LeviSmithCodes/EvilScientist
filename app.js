@@ -5,6 +5,7 @@ let nanobotsPerSecond = 0;
 let exponentialModifier = 0.05;
 let worldBiomassKg = 550000000000000; // wikipedia, based solely on carbon
 let nanobotBiomassKg = 1.0e-17;
+let endgame = false;
 
 let nfObject = new Intl.NumberFormat("en-US"); // for commas in numbers
 
@@ -15,7 +16,7 @@ let automaticUpgrades = {
     multiplier: 15
   },
   nanobotMutations: {
-    price: 100000,
+    price: 100000, // Godmode: 10
     quantity: 0,
     multiplier: 1
   }
@@ -74,7 +75,7 @@ function buyNanobotMutation() {
     automaticUpgrades.nanobotMutations.multiplier += exponentialModifier;
     // nanobotsPerSecond += 50;
     nanobotsCount -= automaticUpgrades.nanobotMutations.price;
-    automaticUpgrades.nanobotMutations.price *= 2; // REVIEW should these multipliers change? be modifyable with a purchase?
+    automaticUpgrades.nanobotMutations.price *= 2;
     // collectSecondUpgrades();
     update();
   }
@@ -109,7 +110,6 @@ function collectClickUpgrades() {
 function update() {
   document.querySelector(
     "#click-modifier-display"
-    // FIXME THIS IS BROKEN SOMEHOW. displayed 7 when was 4 in reality
   ).innerHTML = `Current NB per click:  ${nanobotsPerClick.toLocaleString(
     "en-US"
   )}`;
@@ -131,6 +131,8 @@ function update() {
   <p>Biomass of carbon in the world: ${nfObject.format(worldBiomassKg)} kg</p>
   <br />
   <p>Estimated mass of a single nanobot (based on a large virus): 0.00000000000000001 kg</p>
+  <br />
+  <p>Mass of nanobots: ${(nanobotsCount * nanobotBiomassKg).toFixed(17)} kg</p>
   <br />
   <p>Percent biomass converted to nanobots: ${nfObject.format(
     ((nanobotBiomassKg * nanobotsCount) / worldBiomassKg) * 100
@@ -236,12 +238,22 @@ function collectAutoUpgrades() {
 
     update();
   } else {
-    alert("You destroyed all life. Congrats!");
+    //alert("You destroyed all life. Congrats!");
+    // document.querySelector(
+    //   "#modal-on-end"
+    // ).innerHTML = `$("#exampleModal").modal()`;
+    document.getElementById("myBtn").click();
+    endgame = true;
+    stopInterval();
   }
 }
 
 function startInterval() {
   collectionInterval = setInterval(collectAutoUpgrades, 1000);
+}
+
+function stopInterval() {
+  clearInterval(collectionInterval);
 }
 
 // setInterval(collectAutoUpgrades, 1000);
