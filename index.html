@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Mad Scientist Clicker</title>
+  </head>
+  <body>
+    <header class="container-fluid">
+      <div class="row">
+        <div class="col-11 m-3">
+          <h1>Mad Scientist Clicker</h1>
+          <br />
+          <p>
+            Click the image to start creating nanobots and begin the extinction
+            of all organic life on earth!
+          </p>
+        </div>
+        <!-- why was col-12 causing margin issues? REVIEW  -->
+      </div>
+    </header>
+    <main class="container-fluid">
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <img
+            src="https://newsroom.unsw.edu.au/sites/default/files/styles/full_width/public/thumbnails/image/nanobot_3_1.jpg?itok=znlE6fSz"
+            alt="your instrument of destruction"
+            onclick="mine();"
+          />
+          <br />
+          <span id="click-modifier-display"></span>
+          <br />
+          <span id="automatic-modifier-display"></span>
+        </div>
+        <div class="col-12 col-md-8">
+          <span id="nanobots-count"></span>
+          <br /><br />
+          <b>
+            <!--<span id="drones-count"></span>-->
+          </b>
+          <span id="drone-info"></span>
+          <button type="button" class="btn btn-success" onclick="buyDrone()">
+            Buy a Drone
+          </button>
+          <br />
+          <span id="spacelabs-info"></span>
+          <button type="button" class="btn btn-success" onclick="buySpaceLab()">
+            Buy an Orbital Space Lab
+          </button>
+          <br />
+          <span id="gradstudents-info"></span>
+          <button
+            type="button"
+            class="btn btn-danger"
+            onclick="buyGradStudent()"
+          >
+            Buy an Unpaid Grad Student
+          </button>
+          <span id="nanobotMutations-info"></span>
+          <button
+            type="button"
+            class="btn btn-danger"
+            onclick="buyNanobotMutation()"
+          >
+            Buy Nanobot Self-Replication
+          </button>
+          <!-- <span id="spacelabs-count"></span>
+          <span id="gradstudents-count"></span>
+          <span id="nanobotmutations-count"></span>
+          <br />
+          <button
+            type="button"
+            class="btn btn-success"
+            onclick="buyGradStudent()"
+          >
+            Offer a grad student an unpaid internship
+          </button> -->
+        </div>
+      </div>
+    </main>
+    <footer class="container-fluid"></footer>
+    <script src="app.js"></script>
+  </body>
+</html>
